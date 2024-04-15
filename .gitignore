@@ -1,0 +1,17 @@
+# Terraform specific local files
+.terraform
+.terraform.lock.hcl
+*terraform.tfstate*
+*.log
+secret.auto.tfvars
+terraform.tfvars
+
+
+# Any kind of invironment variables
+*.env
+.vscode/settings.json
+
+# Any packaged files
+*.zip
+my_*
+.env
