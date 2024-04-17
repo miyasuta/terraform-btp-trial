@@ -102,3 +102,9 @@ resource "btp_subaccount_service_instance" "service_manager" {
   name           = "service-manager"
   depends_on     = [btp_subaccount_entitlement.service_manager]
 }
+
+resource "btp_subaccount_service_binding" "service_manager" {
+  subaccount_id       = var.subaccount_id
+  service_instance_id = btp_subaccount_service_instance.service_manager.id
+  name                = "service-manager-key"
+}
