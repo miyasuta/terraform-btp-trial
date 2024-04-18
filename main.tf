@@ -19,6 +19,26 @@ module "workzone_setup" {
   admins               = var.admins
 }
 
+# ------------------------------------------------------------------------------------------------------
+# Set up Integratio Suite
+# ------------------------------------------------------------------------------------------------------
+module "integration_suite_setup" {
+  source = "./modules/integration-suite"
+
+  subaccount_id        = var.subaccount_id
+  admins               = var.admins
+}
+
+# ------------------------------------------------------------------------------------------------------
+# Set up Build Code
+# ------------------------------------------------------------------------------------------------------
+# Boosterで実施
+# module "integration_build_code" {
+#   source = "./modules/build-code"
+
+#   subaccount_id        = var.subaccount_id
+#   admins               = var.admins
+# }
 
 # ------------------------------------------------------------------------------------------------------
 # Set up Automation Pilot
