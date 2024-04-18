@@ -10,6 +10,7 @@ terraform {
 # ------------------------------------------------------------------------------------------------------
 # Entitle subaccount for usage of Integration Suite
 # ------------------------------------------------------------------------------------------------------
+# comment out due to error
 # resource "btp_subaccount_entitlement" "integration_suite" {
 #   subaccount_id = var.subaccount_id
 #   service_name  = "integrationsuite-trial"
