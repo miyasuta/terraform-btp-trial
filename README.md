@@ -24,6 +24,11 @@ subaccount_id = ""
 export BTP_USERNAME=username
 export BTP_PASSWORD=password
 ```
+Alternatively, you can enable SSO by setting BTP_ENABLE_SSO to ture.
+```
+export BTP_ENABLE_SSO=true
+```
+
 4. Run `terraform init`
 5. Run `Terraform apply`
 
