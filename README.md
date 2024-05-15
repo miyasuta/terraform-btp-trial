@@ -19,8 +19,13 @@ hana_system_password = ""
 # ID of trial subaccount
 subaccount_id = ""
 ```
-3. Run `terraform init`
-4. Run `Terraform apply`
+3. Set BTP user's credentials to environment variables
+```
+export BTP_USERNAME=username
+export BTP_PASSWORD=password
+```
+4. Run `terraform init`
+5. Run `Terraform apply`
 
 ## Reference
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
