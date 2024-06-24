@@ -2,7 +2,7 @@ terraform {
   required_providers {
     btp = {
       source  = "sap/btp"
-      version = "~>1.3.0"
+      version = "~>1.4.0"
     }
   }
 }
@@ -19,7 +19,7 @@ terraform {
 
 resource "btp_subaccount_subscription" "integration_suite" {
   subaccount_id = var.subaccount_id
-  app_name      = "it-cpitrial06-prov"
+  app_name      = var.integration_suite_app_name
   plan_name     = "trial"
   # depends_on    = [btp_subaccount_entitlement.integration_suite]
 }

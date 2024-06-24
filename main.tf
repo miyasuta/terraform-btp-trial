@@ -27,18 +27,8 @@ module "integration_suite_setup" {
 
   subaccount_id        = var.subaccount_id
   admins               = var.admins
+  integration_suite_app_name =  var.integration_suite_app_name
 }
-
-# ------------------------------------------------------------------------------------------------------
-# Set up Build Code
-# ------------------------------------------------------------------------------------------------------
-# Boosterで実施
-# module "integration_build_code" {
-#   source = "./modules/build-code"
-
-#   subaccount_id        = var.subaccount_id
-#   admins               = var.admins
-# }
 
 # ------------------------------------------------------------------------------------------------------
 # Set up Automation Pilot

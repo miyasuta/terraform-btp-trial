@@ -15,3 +15,8 @@ variable "admins" {
   }
 
 }
+
+variable "integration_suite_app_name" {
+  type        = string
+  description = "Service plan name for integration suite"  
+}
