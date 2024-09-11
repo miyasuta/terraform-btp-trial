@@ -14,6 +14,9 @@ globalaccount = ""
 # The admin users
 admins  = [""]
 
+# HANA Cloud instance name
+hc_instance_name = "HC_HDB"
+
 # Comment out the next line if you want to provide the password here instead of typing it in the console (not recommended for security reasons)
 hana_system_password = ""
 

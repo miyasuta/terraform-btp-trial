@@ -5,6 +5,7 @@ module "hana_cloud_setup" {
   source = "./modules/hana-cloud"
 
   subaccount_id        = var.subaccount_id
+  hc_instance_name     = var.hc_instance_name
   hana_system_password = var.hana_system_password
   admins               = var.admins
 }

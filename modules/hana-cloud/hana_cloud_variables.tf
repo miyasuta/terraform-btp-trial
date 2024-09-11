@@ -4,6 +4,11 @@ variable "subaccount_id" {
   description = "The subaccount id."
 }
 
+variable "hc_instance_name" {
+  type        = string
+  description = "HANA Cloud instance name"
+}
+
 variable "hana_system_password" {
   type        = string
   description = "The password of the database 'superuser' DBADMIN."

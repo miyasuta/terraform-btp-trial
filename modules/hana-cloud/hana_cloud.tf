@@ -2,7 +2,7 @@ terraform {
   required_providers {
     btp = {
       source  = "sap/btp"
-      version = "~>1.5.0"
+      version = "~>1.6.0"
     }
   }
 }
@@ -51,7 +51,7 @@ data "btp_subaccount_service_plan" "hana_cloud" {
 resource "btp_subaccount_service_instance" "hana_cloud" {
   subaccount_id  = var.subaccount_id
   serviceplan_id = data.btp_subaccount_service_plan.hana_cloud.id
-  name           = "hanatrial"
+  name           = var.hc_instance_name
   depends_on     = [btp_subaccount_entitlement.hana_cloud]
   parameters = jsonencode(
     { 
