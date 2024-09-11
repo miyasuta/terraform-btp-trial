@@ -1,7 +1,8 @@
 ## What does this Terraform project do?
 1. Creates HANA Cloud instance and adds admin users
 2. Subscribes to SAP Build Work Zone, standard edition and adds admin users
-3. Creates subacount in Singapore region, subscribe to Automation Pilot and adds admin users
+3. Subscribes to Integration Suite and adds admin users
+4. Creates a subacount in Singapore region, subscribe to Automation Pilot and adds admin users
 
 ## How to use
 1. Clone this repository
