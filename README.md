@@ -43,3 +43,6 @@ export BTP_ENABLE_SSO=true
 
 ## Reference
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
+
+If you want to schedule the starting of a HANA Cloud instance using Automation Pilot, please refer to the tutorial below:
+https://developers.sap.com/tutorials/hana-cloud-automation-pilot.html
