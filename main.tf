@@ -1,4 +1,15 @@
 # ------------------------------------------------------------------------------------------------------
+# Establish Trust with IAS
+# ------------------------------------------------------------------------------------------------------
+# Execute the following command first, if trust has already been established
+# terraform import btp_subaccount_trust_configuration.trial <subaccoint_id>,sap.custom
+resource "btp_subaccount_trust_configuration" "trial" {
+  subaccount_id     = var.subaccount_id
+  identity_provider = var.identity_provider
+  count = var.use_ias_for_login ? 1 : 0
+}
+
+# ------------------------------------------------------------------------------------------------------
 # Set up HANA Cloud
 # ------------------------------------------------------------------------------------------------------
 module "hana_cloud_setup" {
@@ -8,6 +19,9 @@ module "hana_cloud_setup" {
   hc_instance_name     = var.hc_instance_name
   hana_system_password = var.hana_system_password
   admins               = var.admins
+  idp_origin           = var.idp_origin
+  ias_group            = var.ias_group
+  use_ias_for_login    = var.use_ias_for_login 
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -18,6 +32,9 @@ module "workzone_setup" {
 
   subaccount_id        = var.subaccount_id
   admins               = var.admins
+  idp_origin           = var.idp_origin
+  ias_group            = var.ias_group
+  use_ias_for_login    = var.use_ias_for_login 
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -29,6 +46,9 @@ module "integration_suite_setup" {
   subaccount_id        = var.subaccount_id
   admins               = var.admins
   integration_suite_app_name =  var.integration_suite_app_name
+  idp_origin           = var.idp_origin
+  ias_group            = var.ias_group
+  use_ias_for_login    = var.use_ias_for_login 
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -44,9 +64,18 @@ resource "btp_subaccount" "automation_pilot" {
   region    = lower(var.region)
 }
 
+resource "btp_subaccount_trust_configuration" "automation_pilot" {
+  subaccount_id     = btp_subaccount.automation_pilot.id
+  identity_provider = var.identity_provider
+  count = var.use_ias_for_login ? 1 : 0
+}
+
 module "automation_pilot_setup" {
   source = "./modules/automation-pilot"
 
   subaccount_id        = btp_subaccount.automation_pilot.id
   admins               = var.admins
+  idp_origin           = var.idp_origin
+  ias_group            = var.ias_group
+  use_ias_for_login    = var.use_ias_for_login 
 }

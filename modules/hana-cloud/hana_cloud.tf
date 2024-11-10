@@ -24,11 +24,20 @@ resource "btp_subaccount_subscription" "hana_cloud_tools" {
 
 # Assign users to Role Collection: SAP HANA Cloud Administrator
 resource "btp_subaccount_role_collection_assignment" "hana_cloud_admin" {
-  for_each             = toset(var.admins)
+  for_each             = var.use_ias_for_login ? toset([]) : toset(var.admins)
   subaccount_id        = var.subaccount_id
   role_collection_name = "SAP HANA Cloud Administrator"
   user_name            = each.value
   depends_on           = [btp_subaccount_subscription.hana_cloud_tools]
+}
+
+resource "btp_subaccount_role_collection_assignment" "hana_cloud_admin_ias" {
+  subaccount_id        = var.subaccount_id
+  role_collection_name = "SAP HANA Cloud Administrator"
+  origin               = var.idp_origin
+  group_name           = var.ias_group
+  depends_on           = [btp_subaccount_subscription.hana_cloud_tools]
+  count = var.use_ias_for_login ? 1 : 0
 }
 
 # ------------------------------------------------------------------------------------------------------
