@@ -27,6 +27,16 @@ subaccount_id = ""
 # Service plan name for integration suite: e.g., it-cpitrial05-prov
 # You can check it from the Service Marketplace by selecting Create > Integration Suite
 integration_suite_app_name = ""
+
+# Set true if you want to use IAS for login and role assignment
+use_ias_for_login = true
+
+# Identity Provider
+identity_provider = "aun1xcske.trial-accounts.ondemand.com"
+
+# A group to be mapped to the required role collections
+# This has to be manually created in the IAS tenant
+ias_group = "MyAdmin"
 ```
 3. Set BTP user's credentials to environment variables
 ```
@@ -39,7 +49,8 @@ export BTP_ENABLE_SSO=true
 ```
 
 4. Run `terraform init`
-5. Run `terraform apply`
+5. Run `terraform import btp_subaccount_trust_configuration.trial <subaccoint_id>,sap.custom`, if a trust with an IAS tenant has already been established in your trial subaccount.
+6. Run `terraform apply`
 
 ## Reference
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
