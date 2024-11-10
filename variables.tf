@@ -24,6 +24,7 @@ variable "subaccount_id" {
 variable "hc_instance_name" {
   type        = string
   description = "HANA Cloud instance name"
+  default = "HC_HDB"
 }
 
 variable "hana_system_password" {
@@ -72,4 +73,27 @@ variable "admins" {
 variable "integration_suite_app_name" {
   type        = string
   description = "Service plan name for integration suite"  
+}
+
+variable "identity_provider" {
+  type        = string
+  description = "Identity Provider"
+  default = "xxxx.trial-accounts.ondemand.com"
+}
+
+variable "idp_origin" {
+  type        = string
+  description = "Identity Provider Origin Key"
+  default = "sap.custom"
+}
+
+variable "ias_group" {
+  type        = string
+  description = "A group to be mapped to the required role collections"
+  default = "MyAdmin"
+}
+
+variable "use_ias_for_login" {
+  type = bool
+  default = false
 }

@@ -15,3 +15,18 @@ variable "admins" {
   }
 
 }
+
+variable "idp_origin" {
+  type        = string
+  description = "Identity Provider Origin Key"
+}
+
+variable "ias_group" {
+  type        = string
+  description = "A group to be mapped to the required role collections"
+}
+
+variable "use_ias_for_login" {
+  type = bool
+  default = false
+}
