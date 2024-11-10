@@ -12,7 +12,7 @@
 # You can check it from the global account > gear icon > General > Global Account Subdomain
 globalaccount = ""
 
-# The admin users
+# The admin users (not required when using IAS for login)
 admins  = [""]
 
 # HANA Cloud instance name
