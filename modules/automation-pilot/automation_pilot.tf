@@ -38,5 +38,5 @@ resource "btp_subaccount_role_collection_assignment" "automation_pilot_admin_ias
   origin               = var.idp_origin
   group_name           = var.ias_group
   depends_on           = [btp_subaccount_subscription.automation_pilot]
-  count = var.use_ias_for_login ? 1 : 0
+  count                = var.use_ias_for_login ? 1 : 0
 }
