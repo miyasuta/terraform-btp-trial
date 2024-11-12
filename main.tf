@@ -10,6 +10,17 @@ resource "btp_subaccount_trust_configuration" "trial" {
 }
 
 # ------------------------------------------------------------------------------------------------------
+# Assign role collections
+# ------------------------------------------------------------------------------------------------------
+resource "btp_subaccount_role_collection_assignment" "bas" {
+  subaccount_id        = var.subaccount_id
+  role_collection_name = "Business_Application_Studio_Developer"
+  origin               = var.idp_origin
+  group_name           = var.ias_group
+  count = var.use_ias_for_login ? 1 : 0
+}
+
+# ------------------------------------------------------------------------------------------------------
 # Set up HANA Cloud
 # ------------------------------------------------------------------------------------------------------
 module "hana_cloud_setup" {
