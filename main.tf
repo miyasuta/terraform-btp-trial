@@ -31,7 +31,6 @@ module "hana_cloud_setup" {
   subaccount_id        = var.subaccount_id
   hc_instance_name     = var.hc_instance_name
   hana_system_password = var.hana_system_password
-  admins               = var.admins
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
 }
@@ -43,7 +42,6 @@ module "workzone_setup" {
   source = "./modules/workzone"
 
   subaccount_id        = var.subaccount_id
-  admins               = var.admins
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
 }
@@ -55,7 +53,6 @@ module "integration_suite_setup" {
   source = "./modules/integration-suite"
 
   subaccount_id        = var.subaccount_id
-  admins               = var.admins
   integration_suite_app_name =  var.integration_suite_app_name
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
@@ -83,7 +80,6 @@ module "automation_pilot_setup" {
   source = "./modules/automation-pilot"
 
   subaccount_id        = btp_subaccount.automation_pilot.id
-  admins               = var.admins
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
 }
