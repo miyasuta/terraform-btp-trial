@@ -1,8 +1,12 @@
 ## What does this Terraform project do?
-1. Creates HANA Cloud instance and adds admin users
-2. Subscribes to SAP Build Work Zone, standard edition and adds admin users
-3. Subscribes to Integration Suite and adds admin users
-4. Creates a subacount in Singapore region, subscribe to Automation Pilot and adds admin users
+1. Creates a subscription to Cloud Identity Services and establishes trust with subaccounts (trial and automationPilot)
+1. Creates HANA Cloud instance
+2. Subscribes to SAP Build Work Zone, standard edition
+3. Subscribes to Integration Suite
+4. Creates a subaccount in th Singapore region, subscribes to Automation Pilot
+
+Please note that role assignments are done via mapping with an IAS group.
+Therefore, assign your user to the mapped group as described in the "After Successful Run" section.
 
 ## How to use
 1. Clone this repository
@@ -41,6 +45,10 @@ export BTP_ENABLE_SSO=true
 4. Run `terraform init`
 5. Run `terraform import btp_subaccount_trust_configuration.trial <subaccoint_id>,sap.custom`, if a trust with an IAS tenant has already been established in your trial subaccount.
 6. Run `terraform apply`
+
+## After Successful Run
+1. Log in to the IAS tenant and create a group named "Trial_Default". Assign your user to this group.
+2. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbos for the Default Identity Provider.
 
 ## Reference
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
