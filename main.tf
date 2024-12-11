@@ -48,19 +48,18 @@ module "workzone_setup" {
   ias_group            = var.ias_group
 }
 
-# # ------------------------------------------------------------------------------------------------------
-# # Set up Integratio Suite
-# # ------------------------------------------------------------------------------------------------------
-# module "integration_suite_setup" {
-#   source = "./modules/integration-suite"
+# ------------------------------------------------------------------------------------------------------
+# Set up Integratio Suite
+# ------------------------------------------------------------------------------------------------------
+module "integration_suite_setup" {
+  source = "./modules/integration-suite"
 
-#   subaccount_id        = var.subaccount_id
-#   admins               = var.admins
-#   integration_suite_app_name =  var.integration_suite_app_name
-#   idp_origin           = var.idp_origin
-#   ias_group            = var.ias_group
-#   use_ias_for_login    = var.use_ias_for_login 
-# }
+  subaccount_id        = var.subaccount_id
+  admins               = var.admins
+  integration_suite_app_name =  var.integration_suite_app_name
+  idp_origin           = var.idp_origin
+  ias_group            = var.ias_group
+}
 
 # ------------------------------------------------------------------------------------------------------
 # Set up Automation Pilot

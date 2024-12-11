@@ -27,16 +27,6 @@ subaccount_id = ""
 # Service plan name for integration suite: e.g., it-cpitrial05-prov
 # You can check it from the Service Marketplace by selecting Create > Integration Suite
 integration_suite_app_name = ""
-
-# Set true if you want to use IAS for login and role assignment
-use_ias_for_login = true
-
-# Identity Provider
-identity_provider = "aun1xcske.trial-accounts.ondemand.com"
-
-# A group to be mapped to the required role collections
-# This has to be manually created in the IAS tenant
-ias_group = "MyAdmin"
 ```
 3. Set BTP user's credentials to environment variables
 ```
