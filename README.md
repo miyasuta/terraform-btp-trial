@@ -3,7 +3,7 @@
 1. Creates HANA Cloud instance
 2. Subscribes to SAP Build Work Zone, standard edition
 3. Subscribes to Integration Suite
-4. Creates a subaccount in th Singapore region, subscribes to Automation Pilot
+4. Creates a subaccount in th Singapore region and subscribes to Automation Pilot
 
 Please note that role assignments are done via mapping with an IAS group.
 Therefore, assign your user to the mapped group as described in the **"After Successful Run"** section.
