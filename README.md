@@ -6,7 +6,7 @@
 4. Creates a subaccount in th Singapore region, subscribes to Automation Pilot
 
 Please note that role assignments are done via mapping with an IAS group.
-Therefore, assign your user to the mapped group as described in the "After Successful Run" section.
+Therefore, assign your user to the mapped group as described in the **"After Successful Run"** section.
 
 ## How to use
 1. Clone this repository
@@ -50,7 +50,7 @@ export BTP_ENABLE_SSO=true
 1. Log in to the IAS tenant and create a group named "Trial_Default". Assign your user to this group.
 2. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbos for the Default Identity Provider.
 
-## Reference
+## References
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
 
 If you want to schedule the starting of a HANA Cloud instance using Automation Pilot, please refer to the tutorial below:
