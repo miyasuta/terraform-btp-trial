@@ -16,9 +16,6 @@ Therefore, assign your user to the mapped group as described in the **"After Suc
 # You can check it from the global account > gear icon > General > Global Account Subdomain
 globalaccount = ""
 
-# The admin users (not required when using IAS for login)
-admins  = [""]
-
 # HANA Cloud instance name
 hc_instance_name = "HC_HDB"
 
