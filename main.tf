@@ -1,23 +1,25 @@
 # ------------------------------------------------------------------------------------------------------
-# Establish Trust with IAS
+# Subscribe to Cloud Identity Services and establish trust with trial subaccount
 # ------------------------------------------------------------------------------------------------------
-# Execute the following command first, if trust has already been established
-# terraform import btp_subaccount_trust_configuration.trial <subaccoint_id>,sap.custom
-resource "btp_subaccount_trust_configuration" "trial" {
-  subaccount_id     = var.subaccount_id
-  identity_provider = var.identity_provider
-  count = var.use_ias_for_login ? 1 : 0
+module "cloud_identity_services" {
+  source = "./modules/cloud-identity-services"
+
+  subaccount_id = var.subaccount_id
+}
+
+locals {
+  cloud_identity_services_host = module.cloud_identity_services.cloud_identity_services_host
+  # origin = "sap.custom"
 }
 
 # ------------------------------------------------------------------------------------------------------
-# Assign role collections
+# Assign role collection for BAS
 # ------------------------------------------------------------------------------------------------------
 resource "btp_subaccount_role_collection_assignment" "bas" {
   subaccount_id        = var.subaccount_id
   role_collection_name = "Business_Application_Studio_Developer"
   origin               = var.idp_origin
   group_name           = var.ias_group
-  count = var.use_ias_for_login ? 1 : 0
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -32,7 +34,6 @@ module "hana_cloud_setup" {
   admins               = var.admins
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
-  use_ias_for_login    = var.use_ias_for_login 
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -45,22 +46,21 @@ module "workzone_setup" {
   admins               = var.admins
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
-  use_ias_for_login    = var.use_ias_for_login 
 }
 
-# ------------------------------------------------------------------------------------------------------
-# Set up Integratio Suite
-# ------------------------------------------------------------------------------------------------------
-module "integration_suite_setup" {
-  source = "./modules/integration-suite"
+# # ------------------------------------------------------------------------------------------------------
+# # Set up Integratio Suite
+# # ------------------------------------------------------------------------------------------------------
+# module "integration_suite_setup" {
+#   source = "./modules/integration-suite"
 
-  subaccount_id        = var.subaccount_id
-  admins               = var.admins
-  integration_suite_app_name =  var.integration_suite_app_name
-  idp_origin           = var.idp_origin
-  ias_group            = var.ias_group
-  use_ias_for_login    = var.use_ias_for_login 
-}
+#   subaccount_id        = var.subaccount_id
+#   admins               = var.admins
+#   integration_suite_app_name =  var.integration_suite_app_name
+#   idp_origin           = var.idp_origin
+#   ias_group            = var.ias_group
+#   use_ias_for_login    = var.use_ias_for_login 
+# }
 
 # ------------------------------------------------------------------------------------------------------
 # Set up Automation Pilot
@@ -77,8 +77,7 @@ resource "btp_subaccount" "automation_pilot" {
 
 resource "btp_subaccount_trust_configuration" "automation_pilot" {
   subaccount_id     = btp_subaccount.automation_pilot.id
-  identity_provider = var.identity_provider
-  count = var.use_ias_for_login ? 1 : 0
+  identity_provider = local.cloud_identity_services_host
 }
 
 module "automation_pilot_setup" {
@@ -88,5 +87,4 @@ module "automation_pilot_setup" {
   admins               = var.admins
   idp_origin           = var.idp_origin
   ias_group            = var.ias_group
-  use_ias_for_login    = var.use_ias_for_login 
 }
