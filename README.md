@@ -45,7 +45,7 @@ export BTP_ENABLE_SSO=true
 
 ## After Successful Run
 1. Log in to the IAS tenant and create a group named **"Trial_Default"**. Assign your user to this group.
-2. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbos for the Default Identity Provider.
+2. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbox for the Default Identity Provider.
 
 ## References
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
