@@ -26,9 +26,10 @@ resource "btp_subaccount_subscription" "integration_suite" {
 
 # Assign users to Role Collection: Integration_Provisioner
 resource "btp_subaccount_role_collection_assignment" "integration_suite_provisioner_ias" {
+  for_each             = toset(var.admins)
   subaccount_id        = var.subaccount_id
   role_collection_name = "Integration_Provisioner"
   origin               = var.idp_origin
-  group_name           = var.ias_group
+  user_name            = each.value
   depends_on           = [btp_subaccount_subscription.integration_suite]
 }

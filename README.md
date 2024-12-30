@@ -28,6 +28,9 @@ subaccount_id = ""
 # Service plan name for integration suite: e.g., it-cpitrial05-prov
 # You can check it from the Service Marketplace by selecting Create > Integration Suite
 integration_suite_app_name = ""
+
+# The admin users
+admins = [""]
 ```
 3. Set BTP user's credentials to environment variables
 ```
@@ -44,8 +47,7 @@ export BTP_ENABLE_SSO=true
 6. Run `terraform apply`
 
 ## After Successful Run
-1. Log in to the IAS tenant and create a group named **"Trial_Default"**. Assign your user to this group.
-2. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbox for the Default Identity Provider.
+1. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbox for the Default Identity Provider.
 
 ## References
 https://github.com/SAP-samples/btp-terraform-samples/tree/main

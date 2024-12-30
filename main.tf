@@ -16,10 +16,11 @@ locals {
 # Assign role collection for BAS
 # ------------------------------------------------------------------------------------------------------
 resource "btp_subaccount_role_collection_assignment" "bas" {
+  for_each             = toset(var.admins)
   subaccount_id        = var.subaccount_id
   role_collection_name = "Business_Application_Studio_Developer"
   origin               = var.idp_origin
-  group_name           = var.ias_group
+  user_name            = each.value
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -32,7 +33,7 @@ module "hana_cloud_setup" {
   hc_instance_name     = var.hc_instance_name
   hana_system_password = var.hana_system_password
   idp_origin           = var.idp_origin
-  ias_group            = var.ias_group
+  admins               = var.admins
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -43,7 +44,7 @@ module "workzone_setup" {
 
   subaccount_id        = var.subaccount_id
   idp_origin           = var.idp_origin
-  ias_group            = var.ias_group
+  admins               = var.admins
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ module "integration_suite_setup" {
   subaccount_id        = var.subaccount_id
   integration_suite_app_name =  var.integration_suite_app_name
   idp_origin           = var.idp_origin
-  ias_group            = var.ias_group
+  admins               = var.admins
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -81,5 +82,5 @@ module "automation_pilot_setup" {
 
   subaccount_id        = btp_subaccount.automation_pilot.id
   idp_origin           = var.idp_origin
-  ias_group            = var.ias_group
+  admins               = var.admins
 }
