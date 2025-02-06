@@ -15,3 +15,5 @@ terraform.tfvars
 *.zip
 my_*
 .env
+
+import.tf
