@@ -5,9 +5,6 @@
 3. Subscribes to Integration Suite
 4. Creates a subaccount in th Singapore region and subscribes to Automation Pilot
 
-Please note that role assignments are done via mapping with an IAS group.
-Therefore, assign your user to the mapped group as described in the **"After Successful Run"** section.
-
 ## How to use
 1. Clone this repository
 2. Add `terraform.tfvars` file to the root directory with following contents:
