@@ -46,6 +46,11 @@ export BTP_ENABLE_SSO=true
 ## After Successful Run
 1. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbox for the Default Identity Provider.
 
+## Troubleshooting
+If you encounter the following error, simply executing `terraform apply` will resolve the issue.
+
+![image](https://github.com/user-attachments/assets/f5306adf-fbdf-4baa-95e5-6a5c6df0fa47)
+
 ## References
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
 
