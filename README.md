@@ -45,6 +45,8 @@ export BTP_ENABLE_SSO=true
 
 ## After Successful Run
 1. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbox for the Default Identity Provider.
+2. Configure instance mapping for HANA Cloud.
+![image](https://github.com/user-attachments/assets/24cf4d46-ba32-4412-92ac-c2e174512f97)
 
 ## Troubleshooting
 If you encounter the following error, simply executing `terraform apply` will resolve the issue.
