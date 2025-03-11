@@ -9,7 +9,6 @@ module "cloud_identity_services" {
 
 locals {
   cloud_identity_services_host = module.cloud_identity_services.cloud_identity_services_host
-  # origin = "sap.custom"
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -21,6 +20,7 @@ resource "btp_subaccount_role_collection_assignment" "bas" {
   role_collection_name = "Business_Application_Studio_Developer"
   origin               = var.idp_origin
   user_name            = each.value
+  depends_on           = [ module.cloud_identity_services ]
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -34,6 +34,7 @@ module "hana_cloud_setup" {
   hana_system_password = var.hana_system_password
   idp_origin           = var.idp_origin
   admins               = var.admins
+  depends_on           = [ module.cloud_identity_services ]
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -45,6 +46,7 @@ module "workzone_setup" {
   subaccount_id        = var.subaccount_id
   idp_origin           = var.idp_origin
   admins               = var.admins
+  depends_on           = [ module.cloud_identity_services ]
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -57,6 +59,7 @@ module "integration_suite_setup" {
   integration_suite_app_name =  var.integration_suite_app_name
   idp_origin           = var.idp_origin
   admins               = var.admins
+  depends_on           = [ module.cloud_identity_services ]
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -83,4 +86,5 @@ module "automation_pilot_setup" {
   subaccount_id        = btp_subaccount.automation_pilot.id
   idp_origin           = var.idp_origin
   admins               = var.admins
+  depends_on           = [ btp_subaccount_trust_configuration.automation_pilot ]
 }
