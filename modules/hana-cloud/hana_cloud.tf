@@ -11,13 +11,13 @@ terraform {
 # ------------------------------------------------------------------------------------------------------
 resource "btp_subaccount_entitlement" "hana_cloud_tools" {
   subaccount_id = var.subaccount_id
-  service_name  = "hana-cloud-tools-trial"
+  service_name  = "hana-cloud-tools"
   plan_name     = "tools"
 }
 
 resource "btp_subaccount_subscription" "hana_cloud_tools" {
   subaccount_id = var.subaccount_id
-  app_name      = "hana-cloud-tools-trial"
+  app_name      = "hana-cloud-tools"
   plan_name     = "tools"
   depends_on    = [btp_subaccount_entitlement.hana_cloud_tools]
 }
@@ -37,15 +37,15 @@ resource "btp_subaccount_role_collection_assignment" "hana_cloud_admin" {
 # ------------------------------------------------------------------------------------------------------
 resource "btp_subaccount_entitlement" "hana_cloud" {
   subaccount_id = var.subaccount_id
-  service_name  = "hana-cloud-trial"
-  plan_name     = "hana"
+  service_name  = "hana-cloud"
+  plan_name     = "hana-free"
 }
 
 # Get plan for SAP HANA Cloud
 data "btp_subaccount_service_plan" "hana_cloud" {
   subaccount_id = var.subaccount_id
-  offering_name = "hana-cloud-trial"
-  name          = "hana"
+  offering_name = "hana-cloud"
+  name          = "hana-free"
   depends_on    = [btp_subaccount_entitlement.hana_cloud]
 }
 
