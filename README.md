@@ -48,11 +48,6 @@ export BTP_ENABLE_SSO=true
 2. Configure instance mapping for HANA Cloud.
 ![image](https://github.com/user-attachments/assets/24cf4d46-ba32-4412-92ac-c2e174512f97)
 
-## Troubleshooting
-If you encounter the following error, simply executing `terraform apply` will resolve the issue.
-
-![image](https://github.com/user-attachments/assets/f5306adf-fbdf-4baa-95e5-6a5c6df0fa47)
-
 ## References
 https://github.com/SAP-samples/btp-terraform-samples/tree/main
 
