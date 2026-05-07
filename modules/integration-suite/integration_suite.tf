@@ -32,4 +32,11 @@ resource "btp_subaccount_role_collection_assignment" "integration_suite_provisio
   origin               = var.idp_origin
   user_name            = each.value
   depends_on           = [btp_subaccount_subscription.integration_suite]
+
+  # Trial の Integration Suite サブスクリプションは期限切れで自動削除されることがあり、
+  # その際にロールコレクション(=本割当)も消える。Subscription が再作成されたら
+  # 割当も連動して作り直す。
+  lifecycle {
+    replace_triggered_by = [btp_subaccount_subscription.integration_suite]
+  }
 }
