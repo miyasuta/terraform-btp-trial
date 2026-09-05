@@ -29,15 +29,22 @@ integration_suite_app_name = ""
 # The admin users
 admins = [""]
 ```
-3. Set BTP user's credentials to environment variables
+3. Log in via the btp CLI and let Terraform reuse that session
+```
+export USE_BTPCLI_SESSION=true
+btp login --sso
+```
+If your btp CLI configuration lives outside the default location, also set `BTPCLI_CONFIG_PATH`.
+
+Alternatively, you can set the credentials directly. Note that this flow does not
+work with SAP Universal ID or two-factor authentication.
 ```
 export BTP_USERNAME=username
 export BTP_PASSWORD=password
 ```
-Alternatively, you can enable SSO by setting BTP_ENABLE_SSO to true.
-```
-export BTP_ENABLE_SSO=true
-```
+The former SSO flow via `BTP_ENABLE_SSO` is deprecated by the provider — use the
+btp CLI session instead. Note that the btp CLI session flow is not supported in
+CI/CD environments; use the x509 or JWT bearer assertion flow there.
 
 4. Run `terraform init`
 5. If a trust with an IAS tenant has already been established in your trial subaccount, run: `terraform import btp_subaccount_trust_configuration.trial <subaccount_id>,sap.custom`
