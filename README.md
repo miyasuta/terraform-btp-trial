@@ -34,10 +34,8 @@ admins = [""]
 export USE_BTPCLI_SESSION=true
 btp login --sso
 ```
-If your btp CLI configuration lives outside the default location, also set `BTPCLI_CONFIG_PATH`.
 
-Alternatively, you can set the credentials directly. Note that this flow does not
-work with SAP Universal ID or two-factor authentication.
+Alternatively, you can set the credentials directly. 
 ```
 export BTP_USERNAME=username
 export BTP_PASSWORD=password
