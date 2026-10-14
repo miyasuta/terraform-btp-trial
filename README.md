@@ -2,7 +2,7 @@
 1. Creates a subscription to Cloud Identity Services and establishes trust with subaccounts (trial and automationPilot)
 2. Creates HANA Cloud instance
 3. Subscribes to SAP Build Work Zone, standard edition
-4. Subscribes to Integration Suite
+4. Subscribes to Integration Suite (the rotating app name, e.g. `it-cpitrial05-prov`, is auto-detected)
 5. Creates a subaccount in th Singapore region and subscribes to Automation Pilot
 
 ## How to use
@@ -22,9 +22,11 @@ hana_system_password = ""
 # ID of trial subaccount
 subaccount_id = ""
 
-# Service plan name for integration suite: e.g., it-cpitrial05-prov
-# You can check it from the Service Marketplace by selecting Create > Integration Suite
-integration_suite_app_name = ""
+# Optional: service plan name for integration suite, e.g., it-cpitrial05-prov
+# It is auto-detected from the subaccount's subscriptions. Set it only if detection fails
+# (e.g. the Integration Suite is not subscribed yet). You can check it from the Service Marketplace
+# by selecting Create > Integration Suite
+# integration_suite_app_name = ""
 
 # The admin users
 admins = [""]
@@ -47,6 +49,19 @@ CI/CD environments; use the x509 or JWT bearer assertion flow there.
 4. Run `terraform init`
 5. If a trust with an IAS tenant has already been established in your trial subaccount, run: `terraform import btp_subaccount_trust_configuration.trial <subaccount_id>,sap.custom`
 6. Run `terraform apply`
+
+## Integration Suite app name (auto-detection)
+The Integration Suite app name on BTP trial changes from time to time (e.g. `it-cpitrial06-prov` → `it-cpitrial05-prov`).
+You no longer need to look it up and write it into `terraform.tfvars`: Terraform reads the subaccount's subscriptions
+(`btp_subaccount_subscriptions`) and picks the entry whose `commercial_app_name` is `integrationsuite-trial` and whose plan is `trial`.
+
+- **Override:** set `integration_suite_app_name` in `terraform.tfvars` to skip the lookup.
+- **When detection fails:** the plan stops with an error if no entry (or more than one) matches, e.g. when the Integration Suite
+  was unsubscribed and the subaccount no longer lists it. Set `integration_suite_app_name` manually in that case
+  (check **Service Marketplace > Integration Suite > Create**, or `btp list accounts/subscription`).
+- **When the name changes:** the subscription is replaced (the app name forces a new resource) and the role collection
+  assignment is recreated with it. If Terraform cannot read or destroy the old subscription, remove it from the state with
+  `terraform state rm module.integration_suite_setup.btp_subaccount_subscription.integration_suite` and apply again.
 
 ## After Successful Run
 1. (Optional) In **Security > Trust Configuration**, uncheck the **"Available for User Logon"**  checkbox for the Default Identity Provider.
