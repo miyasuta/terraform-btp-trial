@@ -60,7 +60,8 @@ variable "hana_system_password" {
 
 variable "integration_suite_app_name" {
   type        = string
-  description = "Service plan name for integration suite"  
+  description = "Service plan name for integration suite. Leave unset to auto-detect it from the subaccount's subscriptions."
+  default     = null
 }
 
 variable "idp_origin" {

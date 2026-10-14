@@ -52,11 +52,24 @@ module "workzone_setup" {
 # ------------------------------------------------------------------------------------------------------
 # Set up Integratio Suite
 # ------------------------------------------------------------------------------------------------------
+# The app_name (e.g. it-cpitrial05-prov) rotates on BTP trial, so look it up by its stable
+# commercial_app_name. Set var.integration_suite_app_name to override the lookup.
+data "btp_subaccount_subscriptions" "all" {
+  subaccount_id = var.subaccount_id
+}
+
+locals {
+  integration_suite_app_name_detected = one([
+    for s in data.btp_subaccount_subscriptions.all.values : s.app_name
+    if s.commercial_app_name == "integrationsuite-trial" && s.plan_name == "trial"
+  ])
+}
+
 module "integration_suite_setup" {
   source = "./modules/integration-suite"
 
   subaccount_id        = var.subaccount_id
-  integration_suite_app_name =  var.integration_suite_app_name
+  integration_suite_app_name =  coalesce(var.integration_suite_app_name, local.integration_suite_app_name_detected)
   idp_origin           = var.idp_origin
   admins               = var.admins
   depends_on           = [ module.cloud_identity_services ]

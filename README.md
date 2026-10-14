@@ -22,9 +22,11 @@ hana_system_password = ""
 # ID of trial subaccount
 subaccount_id = ""
 
-# Service plan name for integration suite: e.g., it-cpitrial05-prov
-# You can check it from the Service Marketplace by selecting Create > Integration Suite
-integration_suite_app_name = ""
+# Optional: service plan name for integration suite, e.g., it-cpitrial05-prov
+# It is auto-detected from the subaccount's subscriptions. Set it only if detection fails
+# (e.g. the Integration Suite is not subscribed yet). You can check it from the Service Marketplace
+# by selecting Create > Integration Suite
+# integration_suite_app_name = ""
 
 # The admin users
 admins = [""]
